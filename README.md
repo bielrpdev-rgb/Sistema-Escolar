@@ -1,2 +1,2 @@
-# Sistema-Escolar
+# Gestão Escolar
 Atividade Pos Graduação, entrega (14/12)
