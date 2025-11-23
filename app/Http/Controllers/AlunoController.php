@@ -13,6 +13,12 @@ class AlunoController extends Controller
         return Aluno::all();
     }
 
+    // Mostrar formulário de criação de aluno
+    public function create()
+    {
+        return view('alunos.create');
+    }
+
     // Criar um novo aluno
     public function store(Request $request)
     {
