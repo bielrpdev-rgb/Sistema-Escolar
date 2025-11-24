@@ -23,14 +23,18 @@ class AlunoController extends Controller
 
     // Criar um novo aluno
     public function store(Request $request)
-    {
-        $request->validate([
-            'nome' => 'required|string',
-            'email' => 'required|email|unique:alunos,email',
-            'nascimento' => 'nullable|date',
-        ]);
-        return Aluno::create($request->all());
-    }
+{
+    $request->validate([
+        'nome' => 'required|string',
+        'email' => 'required|email',
+        'nascimento' => 'required|date',
+    ]);
+
+    Aluno::create($request->all());
+    return redirect()->route('alunos.index')
+                     ->with('success', 'Aluno cadastrado com sucesso!');
+}
+
 
     // Visualizar um aluno específico
     public function show($id)
