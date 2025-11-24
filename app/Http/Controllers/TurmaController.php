@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 class TurmaController extends Controller
 {
     public function index()
-    {
-        return Turma::all();
-    }
+{
+    $turmas = Turma::all();
+    return view('turmas.index', compact('turmas'));
+}
+public function create()
+{
+    return view('turmas.create');
+}
+
 
     public function store(Request $request)
     {

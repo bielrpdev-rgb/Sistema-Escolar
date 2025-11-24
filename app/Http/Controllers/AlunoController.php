@@ -9,9 +9,11 @@ class AlunoController extends Controller
 {
     // Listar todos os alunos
     public function index()
-    {
-        return Aluno::all();
-    }
+{
+    $alunos = Aluno::all();
+    return view('alunos.index', compact('alunos'));
+}
+
 
     // Mostrar formulário de criação de aluno
     public function create()

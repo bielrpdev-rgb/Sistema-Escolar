@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 class MatriculaController extends Controller
 {
     public function index()
-    {
-        return Matricula::all();
-    }
+{
+    $matriculas = Matricula::all();
+    return view('matriculas.index', compact('matriculas'));
+}
 
     public function store(Request $request)
     {
@@ -22,6 +23,11 @@ class MatriculaController extends Controller
 
         return Matricula::create($request->all());
     }
+    public function create()
+{
+    return view('matriculas.create');
+}
+
 
     public function show($id)
     {
@@ -42,3 +48,5 @@ class MatriculaController extends Controller
         return response()->json(['message' => 'Matrícula excluída com sucesso']);
     }
 }
+
+    
