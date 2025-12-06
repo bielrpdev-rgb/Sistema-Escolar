@@ -15,3 +15,36 @@ Sistema CRUD completo para gerenciamento de **Alunos**, **Turmas** e **Matrícul
 - Composer
 - Node.js (opcional, para assets)
 - Banco SQLite (configurado por padrão)
+
+## 🚀 Instalação Passo a Passo
+
+### 1. Clonar o Repositório
+
+git clone https://github.com/SEU-USUARIO/sistema-escolar.git
+
+cd sistema-escolar
+
+### 2. Instalar Dependências PHP
+
+composer install
+
+### 3. Configurar Ambiente
+
+cp .env.example .env
+
+php artisan key:generate
+
+### 4. Configurar Banco de Dados
+O projeto usa **SQLite** por padrão:
+
+touch database/database.sqlite
+
+php artisan migrate
+
+### 5. Iniciar o Servidor
+
+php artisan serve --port=8080
+
+### 6. Acessar o Sistema
+
+Abra no navegador: [**http://127.0.0.1:8080**](http://127.0.0.1:8080)
