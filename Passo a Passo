@@ -1,0 +1,35 @@
+## 🚀 Instalação Passo a Passo
+
+### 1. Clonar o Repositório
+git clone https://github.com/bielrpdev-rgb/Sistema-Escolar.git
+cd Sistema-Escolar
+
+### 2. Instalar Dependências PHP
+composer install
+
+### 3. Configurar Ambiente
+cp .env.example .env
+php artisan key:generate
+
+### 4. Configurar Banco de Dados
+O projeto usa **SQLite** por padrão:
+touch database/database.sqlite
+php artisan migrate
+
+
+### 5. Iniciar o Servidor
+php artisan serve --port=8080
+
+
+### 6. Acessar o Sistema
+Abra no navegador: [**http://127.0.0.1:8080**](http://127.0.0.1:8080)
+
+## 🧪 Como Testar
+
+- Acesse `/alunos` para gerenciar alunos.  
+- Acesse `/turmas` para gerenciar turmas.  
+- Acesse `/matriculas` para gerenciar matrículas.
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Gabriel Rodrigues e Junior Amaral** para atividade de Pós-Graduação (entrega 14/12).
