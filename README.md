@@ -1,4 +1,7 @@
 Estrutura Inicial Sistema Escolar
+
+
+
 Este repositório fornece uma configuração base de aplicação Symfony com Docker, Nginx e PostgreSQL para substituir o projeto Aurora utilizado no Ceará.
 
 A configuração já está dockerizada, então você só precisa ter o Docker Compose rodando na sua máquina para que tudo funcione corretamente.
