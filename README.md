@@ -1,20 +1,32 @@
-Estrutura Inicial Sistema Escolar
+# Sistema de Gestão Escolar
 
-Este repositório fornece uma configuração base de aplicação Symfony com Docker, Nginx e PostgreSQL para substituir o projeto Aurora utilizado no Ceará.
+Este repositório contém um sistema de gestão escolar desenvolvido em Laravel para gerenciar alunos, turmas e matrículas, demonstrando o uso de padrões de projeto na camada de aplicação.
 
-A configuração já está dockerizada, então você só precisa ter o Docker Compose rodando na sua máquina para que tudo funcione corretamente.
+A aplicação utiliza SQLite por padrão e já vem preparada para rodar localmente com o mínimo de configuração.
 
-Tecnologias
-PHP 8.4
-PostgreSQL 16
-MongoDB 7
-Symfony 7
-Aurora User Interface 5.3
-Links Rápidos
+---
 
-Instalação
-Passo a passo
-Desenvolvimento
-Arquitetura e Decisões técnicas
-Design UI/UX
-Informações importantes
+## Tecnologias
+
+- PHP 8.2  
+- Laravel 10  
+- SQLite (banco de dados padrão)  
+- Bootstrap 5.3  
+- Composer
+
+---
+
+## Links Rápidos
+
+- [Código-fonte do projeto](./)
+- [CRUD de Alunos](./resources/views/alunos)
+- [CRUD de Turmas](./resources/views/turmas)
+- [CRUD de Matrículas](./resources/views/matriculas)
+- [Controladores (Application Layer)](./app/Http/Controllers)
+- [Models / Active Record](./app/Models)
+- [Rotas da aplicação](./routes/web.php)
+- [Migrations do banco de dados](./database/migrations)
+
+---
+
+## Instalação
