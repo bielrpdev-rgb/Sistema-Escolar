@@ -1,4 +1,4 @@
-# Sistema de Gestão Escolar
+# Estrutura Inicial Sistema de Gestão Escolar
 
 Este repositório contém um sistema de gestão escolar desenvolvido em Laravel para gerenciar alunos, turmas e matrículas, demonstrando o uso de padrões de projeto na camada de aplicação.
 
@@ -31,3 +31,69 @@ A aplicação utiliza SQLite por padrão e já vem preparada para rodar localmen
 ---
 
 ## Instalação
+<details>
+  <summary>Passo a passo</summary>   
+
+1 - Clonar o Repositório
+Primeiro, clone o repositório usando SSH ou HTTPS:
+```
+https://github.com/bielrpdev-rgb/Sistema-Escolar.git
+```
+2 - Navegar para o Diretório do Projeto
+Mude para o diretório do projeto:
+```
+cd Sistema-escolar
+```
+3 - Instalação das dependências do PHP:
+```
+composer install
+```
+4 - Configurar ambiente
+```
+copy .env.example .env
+php artisan key:generate
+```
+5 - Migrar Banco (SQLite automático)
+```
+php artisan migrate
+```
+6 - Executar Aplicação
+```
+php artisan serve
+```
+
+**✅ Acesse: [http://127.0.0.1:8000](http://127.0.0.1:8000)**
+
+## 🎮 Uso
+
+### Rotas Principais
+| URL | Método | Descrição |
+|-----|--------|-----------|
+| `/` | GET | Welcome + Dashboard |
+| `/alunos` | CRUD | Gerenciar alunos |
+| `/turmas` | CRUD | Gerenciar turmas |
+| `/matriculas` | CRUD | Gerenciar matrículas |
+
+### Endpoints API (Query Object)
+GET /turmas/1/alunos # Alunos da turma 1
+
+GET /alunos/1/turmas # Turmas do aluno 1
+
+## 🏗️ Arquitetura e Padrões
+
+### Padrões Implementados
+
+| Pattern | Implementação | Exemplo |
+|---------|---------------|---------|
+| **Active Record** | Eloquent Models | `Aluno::create($data)` + `$fillable` |
+| **Transaction Script** | Controllers | `DB::transaction()` em `store/update/destroy` |
+| **Query Object** | Eager Loading | `Matricula::with(['aluno', 'turma'])->get()` |
+
+### Relacionamentos
+Aluno 1:N Matricula N:1 Turma
+
+Aluno 1:N Turmas (via Matricula)
+
+Turma 1:N Alunos (via Matricula)
+
+</details>
