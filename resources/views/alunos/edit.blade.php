@@ -6,8 +6,8 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-white border-0 pb-0">
-                    <h4 class="mb-2">Novo Aluno</h4>
-                    <p class="text-muted mb-0">Preencha os dados do aluno</p>
+                    <h4 class="mb-2">Editar Aluno</h4>
+                    <p class="text-muted mb-0">{{ $aluno->nome }}</p>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -20,8 +20,9 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('alunos.store') }}" method="POST">
+                    <form action="{{ route('alunos.update', $aluno) }}" method="POST">
                         @csrf
+                        @method('PUT')
 
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
@@ -29,7 +30,7 @@
                                    class="form-control @error('nome') is-invalid @enderror"
                                    id="nome"
                                    name="nome"
-                                   value="{{ old('nome') }}"
+                                   value="{{ old('nome', $aluno->nome) }}"
                                    required>
                             @error('nome')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -42,7 +43,7 @@
                                    class="form-control @error('email') is-invalid @enderror"
                                    id="email"
                                    name="email"
-                                   value="{{ old('email') }}"
+                                   value="{{ old('email', $aluno->email) }}"
                                    required>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -55,7 +56,7 @@
                                    class="form-control @error('nascimento') is-invalid @enderror"
                                    id="nascimento"
                                    name="nascimento"
-                                   value="{{ old('nascimento') }}"
+                                   value="{{ old('nascimento', $aluno->nascimento) }}"
                                    required>
                             @error('nascimento')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -67,7 +68,7 @@
                                 Cancelar
                             </a>
                             <button type="submit" class="btn btn-primary">
-                                Criar Aluno
+                                Salvar Alterações
                             </button>
                         </div>
                     </form>

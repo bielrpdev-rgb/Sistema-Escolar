@@ -3,47 +3,87 @@
 namespace App\Http\Controllers;
 
 use App\Models\Turma;
+use App\Models\Matricula;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TurmaController extends Controller
 {
     public function index()
-{
-    $turmas = Turma::all();
-    return view('turmas.index', compact('turmas'));
-}
-public function create()
-{
-    return view('turmas.create');
-}
+    {
+        $turmas = Turma::all();
+        return view('turmas.index', compact('turmas'));
+    }
 
+    public function create()
+    {
+        return view('turmas.create');
+    }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required|string',
-            'descricao' => 'nullable|string',
+            'nome' => 'required|string|max:255',
+            'ano' => 'required|integer|min:1900|max:2100',
         ]);
 
-        return Turma::create($request->all());
+        DB::transaction(function () use ($request) {
+            Turma::create([
+                'nome' => $request->nome,
+                'ano' => $request->ano,
+                'turno' => 'Manhã'
+            ]);
+        });
+
+        return redirect()->route('turmas.index')
+                         ->with('success', 'Turma criada com sucesso!');
     }
 
-    public function show($id)
+    public function show(Turma $turma)
     {
-        return Turma::findOrFail($id);
+        $alunos = $turma->alunos()->with('aluno')->get();
+        return view('turmas.show', compact('turma', 'alunos'));
     }
 
-    public function update(Request $request, $id)
+    public function edit(Turma $turma)
     {
-        $turma = Turma::findOrFail($id);
-        $turma->update($request->all());
-        return $turma;
+        return view('turmas.edit', compact('turma'));
     }
 
-    public function destroy($id)
+    public function update(Request $request, Turma $turma)
     {
-        $turma = Turma::findOrFail($id);
-        $turma->delete();
-        return response()->json(['message' => 'Turma excluída com sucesso']);
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'ano' => 'required|integer|min:1900|max:2100',
+        ]);
+
+        DB::transaction(function () use ($request, $turma) {
+            $turma->update([
+                'nome' => $request->nome,
+                'ano' => $request->ano,
+                'turno' => 'Manhã'
+            ]);
+        });
+
+        return redirect()->route('turmas.index')
+                         ->with('success', 'Turma atualizada com sucesso!');
+    }
+
+    public function destroy(Turma $turma)
+    {
+        DB::transaction(function () use ($turma) {
+            Matricula::where('turma_id', $turma->id)->delete();
+            $turma->delete();
+        });
+
+        return redirect()->route('turmas.index')
+                         ->with('success', 'Turma excluída com sucesso!');
+    }
+
+    // ✅ ENDPOINT EXTRA: Alunos de uma turma (Query Object)
+    public function alunos(Turma $turma)
+    {
+        $alunos = $turma->alunos()->with('aluno')->get();
+        return response()->json($alunos);
     }
 }

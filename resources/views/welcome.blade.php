@@ -1,40 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Alunos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-        h1 {
-            color: #333;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 8px;
-            padding: 8px;
-            background-color: #f2f2f2;
-            border-radius: 4px;
-            width: 300px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Alunos</h1>
+@extends('layout')
 
-    @if (count($alunos) > 0)
-        <ul>
-            @foreach ($alunos as $aluno)
-                <li>{{ $aluno->nome }}</li>
-            @endforeach
-        </ul>
-    @else
-        <p>Não há alunos cadastrados.</p>
-    @endif
+@section('content')
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="mb-3">Bem-vindo ao Sistema de Gestão Escolar</h1>
+        <p class="lead">
+            Gerencie alunos, turmas e matrículas de forma simples e organizada.
+        </p>
+        <a href="{{ route('alunos.index') }}" class="btn btn-primary btn-lg mt-3">
+            Entrar no sistema
+        </a>
+    </div>
 
-</body>
-</html>
+    <div class="row text-center">
+        <div class="col-md-4 mb-3">
+            <h4>Alunos</h4>
+            <p>Cadastre, edite e gerencie os dados dos alunos.</p>
+            <a href="{{ route('alunos.index') }}" class="btn btn-outline-primary btn-sm">
+                Ir para Alunos
+            </a>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <h4>Turmas</h4>
+            <p>Organize turmas por ano, turno e visualize seus alunos.</p>
+            <a href="{{ route('turmas.index') }}" class="btn btn-outline-primary btn-sm">
+                Ir para Turmas
+            </a>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <h4>Matrículas</h4>
+            <p>Controle as matrículas com aluno, turma, data e status.</p>
+            <a href="{{ route('matriculas.index') }}" class="btn btn-outline-primary btn-sm">
+                Ir para Matrículas
+            </a>
+        </div>
+    </div>
+</div>
+@endsection

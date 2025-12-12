@@ -4,13 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\MatriculaController;
-use App\Models\Aluno;
 
 Route::resource('alunos', AlunoController::class);
 Route::resource('turmas', TurmaController::class);
 Route::resource('matriculas', MatriculaController::class);
 
+// ✅ ENDPOINTS EXTRAS
+Route::get('turmas/{turma}/alunos', [TurmaController::class, 'alunos']);
+Route::get('alunos/{aluno}/turmas', [AlunoController::class, 'turmas']);
+
 Route::get('/', function () {
-    $alunos = Aluno::all();
-    return view('welcome', compact('alunos'));
+    return view('welcome');
 });
