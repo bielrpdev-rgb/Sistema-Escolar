@@ -26,7 +26,7 @@ A aplicação utiliza SQLite por padrão e já vem preparada para rodar localmen
 - [Models / Active Record](./app/Models)
 - [Rotas da aplicação](./routes/web.php)
 - [Migrations do banco de dados](./database/migrations)
-- [Fluxo de Trabalho do Projeto](help/fluxo.md)
+- [Fluxo de Desenvolvimento](help/fluxo.md)
 
 ---
 
