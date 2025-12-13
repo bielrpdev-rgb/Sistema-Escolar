@@ -97,3 +97,27 @@ Aluno 1:N Turmas (via Matricula)
 Turma 1:N Alunos (via Matricula)
 
 </details>
+
+## Desenvolvimento
+<details>
+  <summary>Arquitetura e Decisões técnicas</summary>   
+
+O sistema foi desenvolvido em Laravel utilizando o ecossistema de bibliotecas do framework. A aplicação é um monolito web tradicional, com renderização server-side via Blade, e segue uma arquitetura simples em camadas lógicas (rotas, controllers, models e views), aplicando os padrões Active Record, Transaction Script e Query Object.
+
+Além das telas web, o sistema expõe alguns endpoints JSON para consulta de alunos por turma e turmas por aluno, complementando a interface web, mas sem caracterizar a aplicação como API First.
+
+```mermaid
+---
+config:
+  layout: fixed
+---
+flowchart TB
+    BROWSER["Browser"] -- GET/POST --> ROUTES["Routes"]
+    ROUTES --> CONTROLLERS["Controllers"]
+    CONTROLLERS --> MODELS["Models Eloquent"] & VIEWS["Views Blade<br>Bootstrap"]
+    MODELS --> DB[("SQLite Database")]
+    VIEWS --> BROWSER
+```
+- Para entender o nosso fluxo de desenvolvimento e decisões técnicas [clique aqui](help/fluxo.md)
+    
+</details>
